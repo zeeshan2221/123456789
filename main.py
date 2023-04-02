@@ -45,7 +45,7 @@ def generate_audio(text):
 
     # Convert the response audio to a playable format
     audio_bytes = BytesIO(response.content)
-    audio_segment = AudioSegment.from_file(audio_bytes, format="mp3")
+    audio_segment = AudioSegment.from_file(audio_bytes.getvalue(), format="mp3")
     audio_segment.export("presentation_audio.mp3", format="mp3")
 
     return audio_bytes
