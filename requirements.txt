@@ -2,5 +2,5 @@ streamlit
 requests
 openai
 pydub
-ffmpeg
+ffmpeg-python
 ffprobe
