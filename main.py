@@ -69,4 +69,3 @@ def main():
 if __name__ == "__main__":
     st.set_page_config(page_title="AICademy", page_icon=":books:")
     main()
- debug it
