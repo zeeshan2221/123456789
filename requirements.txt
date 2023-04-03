@@ -1,6 +1,5 @@
-streamlit
-requests
-openai
-pydub
-ffmpeg-python
-ffprobe
+Streamlit
+OpenAI API
+Requests library
+Pydub library
+ResponsiveVoice API
