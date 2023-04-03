@@ -1,11 +1,10 @@
 import requests
 import streamlit as st
-import openai
 from io import BytesIO
 from pydub import AudioSegment
 
-# Set up OpenAI API
-openai.api_key = st.secrets["openai_api_key"]
+# Set up ResponsiveVoice API
+rv_api_key = st.secrets["responsive_voice_api_key"]
 
 
 def generate_presentation(topic):
@@ -28,20 +27,19 @@ def generate_presentation(topic):
 
 
 def generate_audio(text):
-    # Set up text-to-speech API parameters
-    api_key = st.secrets["tts_api_key"]
-    api_url = "https://api.fpt.ai/hmi/tts/v5"
-    voice = "banmai"
-    speed = "0"
-
-    # Send a request to the text-to-speech API
-    headers = {
-        "api-key": api_key,
-        "voice": voice,
-        "speed": speed
+    # Send a request to the ResponsiveVoice API
+    api_url = "https://api.responsivevoice.org/v1/text-to-speech"
+    params = {
+        "key": rv_api_key,
+        "src": text,
+        "hl": "en-US",
+        "r": "0",
+        "c": "mp3",
+        "f": "48khz_16bit_stereo",
+        "ssml": "false",
+        "b64": "true"
     }
-    data = {"text": text}
-    response = requests.post(api_url, headers=headers, json=data)
+    response = requests.get(api_url, params=params)
 
     # Convert the response audio to a playable format
     audio_bytes = BytesIO(response.content)
